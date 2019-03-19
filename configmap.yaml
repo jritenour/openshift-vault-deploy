@@ -1,0 +1,33 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    vault.hcl: |
+      storage "consul" {
+       address = "consul-vault-deploy.apps.home.lab"
+       path = "vault/"
+       }
+      listener "tcp" {
+        address = "0.0.0.0:8200"
+        tls_disable = "true"
+      }
+      disable_mlock="true"
+      disable_cache="true"
+      ui = "true"
+
+      max_least_ttl="10h"
+      default_least_ttl="10h"
+      raw_storage_endpoint=true
+      cluster_name="mycompany-vault"
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: 2019-03-19T14:06:37Z
+    name: vault
+    namespace: vault-deploy
+    resourceVersion: "252361"
+    selfLink: /api/v1/namespaces/vault-deploy/configmaps/vault
+    uid: 35d14e46-4a50-11e9-8657-005056bf8718
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

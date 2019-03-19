@@ -1,0 +1,291 @@
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    creationTimestamp: 2019-03-19T13:49:25Z
+    generation: 1
+    name: consul
+    namespace: vault-deploy
+    resourceVersion: "250544"
+    selfLink: /apis/apps/v1/namespaces/vault-deploy/statefulsets/consul
+    uid: cefede65-4a4d-11e9-8657-005056bf8718
+  spec:
+    podManagementPolicy: OrderedReady
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: consul
+    serviceName: consul
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: consul
+      spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - consul
+              topologyKey: kubernetes.io/hostname
+        containers:
+        - args:
+          - agent
+          - -advertise=$(POD_IP)
+          - -bind=0.0.0.0
+          - -bootstrap-expect=1
+          - -retry-join=consul-0.consul.$(NAMESPACE).svc.cluster.local
+          - -client=0.0.0.0
+          - -datacenter=dc1
+          - -data-dir=/consul/data
+          - -domain=cluster.local
+          - -server
+          - -ui
+          - -disable-host-node-id
+          env:
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: status.podIP
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: consul:1.4.0
+          imagePullPolicy: IfNotPresent
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                - /bin/sh
+                - -c
+                - consul leave
+          name: consul
+          ports:
+          - containerPort: 8500
+            name: ui-port
+            protocol: TCP
+          - containerPort: 8400
+            name: alt-port
+            protocol: TCP
+          - containerPort: 53
+            name: udp-port
+            protocol: TCP
+          - containerPort: 8443
+            name: https-port
+            protocol: TCP
+          - containerPort: 8080
+            name: http-port
+            protocol: TCP
+          - containerPort: 8301
+            name: serflan
+            protocol: TCP
+          - containerPort: 8302
+            name: serfwan
+            protocol: TCP
+          - containerPort: 8600
+            name: consuldns
+            protocol: TCP
+          - containerPort: 8300
+            name: server
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /consul/data
+            name: data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          fsGroup: 1000
+        serviceAccount: privilegeduser
+        serviceAccountName: privilegeduser
+        terminationGracePeriodSeconds: 10
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
+    volumeClaimTemplates:
+    - metadata:
+        creationTimestamp: null
+        name: data
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+      status:
+        phase: Pending
+  status:
+    collisionCount: 0
+    currentReplicas: 1
+    currentRevision: consul-c68458d8c
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updateRevision: consul-c68458d8c
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    creationTimestamp: 2019-03-19T14:08:09Z
+    generation: 1
+    labels:
+      app: vault
+    name: vault
+    namespace: vault-deploy
+    resourceVersion: "252573"
+    selfLink: /apis/apps/v1/namespaces/vault-deploy/statefulsets/vault
+    uid: 6cac00b9-4a50-11e9-8657-005056bf8718
+  spec:
+    podManagementPolicy: OrderedReady
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: vault
+    serviceName: vault
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: vault
+      spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - vault
+              topologyKey: kubernetes.io/hostname
+        containers:
+        - command:
+          - vault
+          - server
+          - -config
+          - /vault/config/vault.hcl
+          env:
+          - name: HOST_IP
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: status.hostIP
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: status.podIP
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: vault:1.0.1
+          imagePullPolicy: IfNotPresent
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                - vault operator step-down
+          name: vault
+          ports:
+          - containerPort: 8200
+            name: vault-port
+            protocol: TCP
+          - containerPort: 8201
+            name: cluster-port
+            protocol: TCP
+          resources: {}
+          securityContext:
+            capabilities:
+              add:
+              - IPC_LOCK
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /vault/config/vault.hcl
+            name: configurations
+            subPath: vault.hcl
+        - args:
+          - agent
+          - -retry-join=consul-0.consul.$(NAMESPACE).svc.cluster.local
+          - -domain=cluster.local
+          - -datacenter=dc1
+          - -disable-host-node-id
+          - -client=127.0.0.1
+          - -bind=$(POD_IP)
+          env:
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: status.podIP
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: consul:1.4.0
+          imagePullPolicy: IfNotPresent
+          name: consul-vault-agent
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /consul/data
+            name: data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: privilegeduser
+        serviceAccountName: privilegeduser
+        terminationGracePeriodSeconds: 10
+        volumes:
+        - configMap:
+            defaultMode: 420
+            name: vault
+          name: configurations
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
+    volumeClaimTemplates:
+    - metadata:
+        creationTimestamp: null
+        name: data
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+      status:
+        phase: Pending
+  status:
+    collisionCount: 0
+    currentReplicas: 1
+    currentRevision: vault-864dc79697
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updateRevision: vault-864dc79697
+    updatedReplicas: 1
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
