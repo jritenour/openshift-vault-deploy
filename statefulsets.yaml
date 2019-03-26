@@ -3,13 +3,10 @@ items:
 - apiVersion: apps/v1
   kind: StatefulSet
   metadata:
-    creationTimestamp: 2019-03-19T13:49:25Z
     generation: 1
     name: consul
     namespace: vault-deploy
-    resourceVersion: "250544"
     selfLink: /apis/apps/v1/namespaces/vault-deploy/statefulsets/consul
-    uid: cefede65-4a4d-11e9-8657-005056bf8718
   spec:
     podManagementPolicy: OrderedReady
     replicas: 1
@@ -20,7 +17,6 @@ items:
     serviceName: consul
     template:
       metadata:
-        creationTimestamp: null
         labels:
           app: consul
       spec:
@@ -139,15 +135,12 @@ items:
 - apiVersion: apps/v1
   kind: StatefulSet
   metadata:
-    creationTimestamp: 2019-03-19T14:08:09Z
     generation: 1
     labels:
       app: vault
     name: vault
     namespace: vault-deploy
-    resourceVersion: "252573"
     selfLink: /apis/apps/v1/namespaces/vault-deploy/statefulsets/vault
-    uid: 6cac00b9-4a50-11e9-8657-005056bf8718
   spec:
     podManagementPolicy: OrderedReady
     replicas: 1

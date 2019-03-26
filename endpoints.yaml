@@ -3,14 +3,12 @@ items:
 - apiVersion: v1
   kind: Endpoints
   metadata:
-    creationTimestamp: 2019-03-19T14:01:12Z
     labels:
       app: consul
     name: consul
     namespace: vault-deploy
     resourceVersion: "251747"
     selfLink: /api/v1/namespaces/vault-deploy/endpoints/consul
-    uid: 742af825-4a4f-11e9-8657-005056bf8718
   subsets:
   - addresses:
     - hostname: consul-0
@@ -20,8 +18,6 @@ items:
         kind: Pod
         name: consul-0
         namespace: vault-deploy
-        resourceVersion: "250543"
-        uid: cf043dfe-4a4d-11e9-8657-005056bf8718
     ports:
     - name: serflan-tcp
       port: 8301
@@ -53,14 +49,11 @@ items:
 - apiVersion: v1
   kind: Endpoints
   metadata:
-    creationTimestamp: 2019-03-19T14:07:03Z
     labels:
       app: vault
     name: vault
     namespace: vault-deploy
-    resourceVersion: "252574"
     selfLink: /api/v1/namespaces/vault-deploy/endpoints/vault
-    uid: 45673007-4a50-11e9-8657-005056bf8718
   subsets:
   - addresses:
     - hostname: vault-0
@@ -71,7 +64,6 @@ items:
         name: vault-0
         namespace: vault-deploy
         resourceVersion: "252572"
-        uid: 6cb353ad-4a50-11e9-8657-005056bf8718
     ports:
     - name: vault
       port: 8200

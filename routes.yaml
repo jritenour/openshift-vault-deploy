@@ -1,0 +1,91 @@
+apiVersion: v1
+items:
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    labels:
+      app: consul
+    name: consul
+    namespace: vault-deploy
+    selfLink: /apis/route.openshift.io/v1/namespaces/vault-deploy/routes/consul
+  spec:
+    host: consul-vault-deploy.apps.home.lab
+    port:
+      targetPort: 8500
+    to:
+      kind: Service
+      name: consul
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: 2019-03-19T14:01:57Z
+        status: "True"
+        type: Admitted
+      host: consul-vault-deploy.apps.home.lab
+      routerName: router
+      wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftWebConsole
+      openshift.io/host.generated: "true"
+    labels:
+      app: simplepy
+    name: simplepy
+    namespace: vault-deploy
+    selfLink: /apis/route.openshift.io/v1/namespaces/vault-deploy/routes/simplepy
+  spec:
+    host: simplepy-vault-deploy.apps.home.lab
+    port:
+      targetPort: 8080-tcp
+    to:
+      kind: Service
+      name: simplepy
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: 2019-03-20T14:37:37Z
+        status: "True"
+        type: Admitted
+      host: simplepy-vault-deploy.apps.home.lab
+      routerName: router
+      wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    labels:
+      app: vault
+    name: vault
+    namespace: vault-deploy
+    selfLink: /apis/route.openshift.io/v1/namespaces/vault-deploy/routes/vault
+  spec:
+    host: vault-vault-deploy.apps.home.lab
+    port:
+      targetPort: 8200
+    to:
+      kind: Service
+      name: vault
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: 2019-03-19T14:08:38Z
+        status: "True"
+        type: Admitted
+      host: vault-vault-deploy.apps.home.lab
+      routerName: router
+      wildcardPolicy: None
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

@@ -5,7 +5,6 @@ items:
   metadata:
     annotations:
       openshift.io/scc: privileged
-    creationTimestamp: 2019-03-19T13:49:25Z
     generateName: consul-
     labels:
       app: consul
@@ -19,10 +18,7 @@ items:
       controller: true
       kind: StatefulSet
       name: consul
-      uid: cefede65-4a4d-11e9-8657-005056bf8718
-    resourceVersion: "250543"
     selfLink: /api/v1/namespaces/vault-deploy/pods/consul-0
-    uid: cf043dfe-4a4d-11e9-8657-005056bf8718
   spec:
     affinity:
       podAntiAffinity:
@@ -132,15 +128,12 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: 2019-03-19T13:50:28Z
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: 2019-03-19T13:50:31Z
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: 2019-03-19T13:50:28Z
       status: "True"
       type: PodScheduled
     containerStatuses:
@@ -151,20 +144,11 @@ items:
       name: consul
       ready: true
       restartCount: 0
-      state:
-        running:
-          startedAt: 2019-03-19T13:50:30Z
-    hostIP: 192.168.2.21
-    phase: Running
-    podIP: 10.128.0.38
-    qosClass: BestEffort
-    startTime: 2019-03-19T13:50:28Z
 - apiVersion: v1
   kind: Pod
   metadata:
     annotations:
       openshift.io/scc: privileged
-    creationTimestamp: 2019-03-19T14:08:09Z
     generateName: vault-
     labels:
       app: vault
@@ -178,10 +162,7 @@ items:
       controller: true
       kind: StatefulSet
       name: vault
-      uid: 6cac00b9-4a50-11e9-8657-005056bf8718
-    resourceVersion: "252572"
     selfLink: /api/v1/namespaces/vault-deploy/pods/vault-0
-    uid: 6cb353ad-4a50-11e9-8657-005056bf8718
   spec:
     affinity:
       podAntiAffinity:
@@ -340,18 +321,15 @@ items:
     phase: Running
     podIP: 10.128.0.39
     qosClass: BestEffort
-    startTime: 2019-03-19T14:08:09Z
 - apiVersion: v1
   kind: Service
   metadata:
-    creationTimestamp: 2019-03-19T14:01:12Z
     labels:
       app: consul
     name: consul
     namespace: vault-deploy
     resourceVersion: "251746"
     selfLink: /api/v1/namespaces/vault-deploy/services/consul
-    uid: 742843db-4a4f-11e9-8657-005056bf8718
   spec:
     clusterIP: 172.30.149.36
     ports:
@@ -400,14 +378,12 @@ items:
 - apiVersion: v1
   kind: Service
   metadata:
-    creationTimestamp: 2019-03-19T14:07:03Z
     labels:
       app: vault
     name: vault
     namespace: vault-deploy
     resourceVersion: "252410"
     selfLink: /api/v1/namespaces/vault-deploy/services/vault
-    uid: 4565cd8d-4a50-11e9-8657-005056bf8718
   spec:
     clusterIP: 172.30.94.83
     ports:
@@ -424,13 +400,11 @@ items:
 - apiVersion: apps/v1
   kind: StatefulSet
   metadata:
-    creationTimestamp: 2019-03-19T13:49:25Z
     generation: 1
     name: consul
     namespace: vault-deploy
     resourceVersion: "250544"
     selfLink: /apis/apps/v1/namespaces/vault-deploy/statefulsets/consul
-    uid: cefede65-4a4d-11e9-8657-005056bf8718
   spec:
     podManagementPolicy: OrderedReady
     replicas: 1
@@ -560,7 +534,6 @@ items:
 - apiVersion: apps/v1
   kind: StatefulSet
   metadata:
-    creationTimestamp: 2019-03-19T14:08:09Z
     generation: 1
     labels:
       app: vault
@@ -568,7 +541,6 @@ items:
     namespace: vault-deploy
     resourceVersion: "252573"
     selfLink: /apis/apps/v1/namespaces/vault-deploy/statefulsets/vault
-    uid: 6cac00b9-4a50-11e9-8657-005056bf8718
   spec:
     podManagementPolicy: OrderedReady
     replicas: 1
@@ -711,14 +683,12 @@ items:
   metadata:
     annotations:
       openshift.io/host.generated: "true"
-    creationTimestamp: 2019-03-19T14:01:57Z
     labels:
       app: consul
     name: consul
     namespace: vault-deploy
     resourceVersion: "251834"
     selfLink: /apis/route.openshift.io/v1/namespaces/vault-deploy/routes/consul
-    uid: 8f19d662-4a4f-11e9-8657-005056bf8718
   spec:
     host: consul-vault-deploy.apps.home.lab
     port:
@@ -742,14 +712,12 @@ items:
   metadata:
     annotations:
       openshift.io/host.generated: "true"
-    creationTimestamp: 2019-03-19T14:08:38Z
     labels:
       app: vault
     name: vault
     namespace: vault-deploy
     resourceVersion: "252618"
     selfLink: /apis/route.openshift.io/v1/namespaces/vault-deploy/routes/vault
-    uid: 7e3b92d2-4a50-11e9-8657-005056bf8718
   spec:
     host: vault-vault-deploy.apps.home.lab
     port:

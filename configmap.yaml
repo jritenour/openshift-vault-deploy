@@ -21,12 +21,9 @@ items:
       cluster_name="mycompany-vault"
   kind: ConfigMap
   metadata:
-    creationTimestamp: 2019-03-19T14:06:37Z
     name: vault
     namespace: vault-deploy
-    resourceVersion: "252361"
     selfLink: /api/v1/namespaces/vault-deploy/configmaps/vault
-    uid: 35d14e46-4a50-11e9-8657-005056bf8718
 kind: List
 metadata:
   resourceVersion: ""
