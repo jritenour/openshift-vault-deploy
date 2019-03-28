@@ -1,0 +1,81 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: consul
+    name: consul
+    namespace: vault-deploy
+    selfLink: /api/v1/namespaces/vault-deploy/services/consul
+  spec:
+    clusterIP: 172.30.140.58
+    ports:
+    - name: http
+      port: 8500
+      protocol: TCP
+      targetPort: 8500
+    - name: https
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+    - name: rpc
+      port: 8400
+      protocol: TCP
+      targetPort: 8400
+    - name: serflan-tcp
+      port: 8301
+      protocol: TCP
+      targetPort: 8301
+    - name: serflan-udp
+      port: 8301
+      protocol: UDP
+      targetPort: 8301
+    - name: serfwan-tcp
+      port: 8302
+      protocol: TCP
+      targetPort: 8302
+    - name: serfwan-udp
+      port: 8302
+      protocol: UDP
+      targetPort: 8302
+    - name: server
+      port: 8300
+      protocol: TCP
+      targetPort: 8300
+    - name: consuldns
+      port: 8600
+      protocol: TCP
+      targetPort: 8600
+    selector:
+      app: consul
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: vault
+    name: vault
+    namespace: vault-deploy
+    resourceVersion: "1743872"
+    selfLink: /api/v1/namespaces/vault-deploy/services/vault
+  spec:
+    clusterIP: 172.30.191.251
+    ports:
+    - name: vault
+      port: 8200
+      protocol: TCP
+      targetPort: 8200
+    selector:
+      app: vault
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
