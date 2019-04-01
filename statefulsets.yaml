@@ -187,7 +187,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: hub.hashi.cloud:5000/hashi/vault-enterprise:1.1.0-fannie-mae
+          image: vault-enterprise
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
