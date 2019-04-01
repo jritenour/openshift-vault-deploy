@@ -9,7 +9,6 @@ items:
     namespace: vault-deploy
     selfLink: /api/v1/namespaces/vault-deploy/services/consul
   spec:
-    clusterIP: 172.30.140.58
     ports:
     - name: http
       port: 8500
@@ -63,7 +62,6 @@ items:
     resourceVersion: "1743872"
     selfLink: /api/v1/namespaces/vault-deploy/services/vault
   spec:
-    clusterIP: 172.30.191.251
     ports:
     - name: vault
       port: 8200
