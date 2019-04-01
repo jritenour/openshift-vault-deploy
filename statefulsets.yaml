@@ -55,7 +55,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: consul-enterprise:1.4.0
+          image: docker.io/hashicorp/consul-enterprise
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -187,7 +187,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: vault-enterprise:1.1.0-fannie-mae-ent
+          image: hub.hashi.cloud:5000/hashi/vault-enterprise:1.1.0-fannie-mae
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -232,7 +232,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: consul-enterprise:1.4.0
+          image: docker.io/hashicorp/consul-enterprise
           imagePullPolicy: IfNotPresent
           name: consul-vault-agent
           resources: {}

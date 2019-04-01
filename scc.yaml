@@ -1,0 +1,334 @@
+apiVersion: v1
+items:
+- allowHostDirVolumePlugin: false
+  allowHostIPC: false
+  allowHostNetwork: false
+  allowHostPID: false
+  allowHostPorts: false
+  allowPrivilegedContainer: false
+  allowedCapabilities: null
+  apiVersion: security.openshift.io/v1
+  defaultAddCapabilities: null
+  fsGroup:
+    type: RunAsAny
+  groups:
+  - system:cluster-admins
+  kind: SecurityContextConstraints
+  metadata:
+    annotations:
+      kubernetes.io/description: anyuid provides all features of the restricted SCC
+        but allows users to run with any UID and any GID.
+    creationTimestamp: 2019-03-18T00:57:24Z
+    name: anyuid
+    namespace: ""
+    resourceVersion: "1741504"
+    selfLink: /apis/security.openshift.io/v1/securitycontextconstraints/anyuid
+    uid: cab744a3-4918-11e9-a4ac-005056bf8718
+  priority: 10
+  readOnlyRootFilesystem: false
+  requiredDropCapabilities:
+  - MKNOD
+  runAsUser:
+    type: RunAsAny
+  seLinuxContext:
+    type: MustRunAs
+  supplementalGroups:
+    type: RunAsAny
+  users:
+  - system:serviceaccount:secrets-management:default
+  volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - persistentVolumeClaim
+  - projected
+  - secret
+- allowHostDirVolumePlugin: true
+  allowHostIPC: true
+  allowHostNetwork: true
+  allowHostPID: true
+  allowHostPorts: true
+  allowPrivilegedContainer: false
+  allowedCapabilities: null
+  apiVersion: security.openshift.io/v1
+  defaultAddCapabilities: null
+  fsGroup:
+    type: MustRunAs
+  groups: []
+  kind: SecurityContextConstraints
+  metadata:
+    annotations:
+      kubernetes.io/description: 'hostaccess allows access to all host namespaces
+        but still requires pods to be run with a UID and SELinux context that are
+        allocated to the namespace. WARNING: this SCC allows host access to namespaces,
+        file systems, and PIDS.  It should only be used by trusted pods.  Grant with
+        caution.'
+    creationTimestamp: 2019-03-18T00:57:23Z
+    name: hostaccess
+    namespace: ""
+    resourceVersion: "26"
+    selfLink: /apis/security.openshift.io/v1/securitycontextconstraints/hostaccess
+    uid: ca7db467-4918-11e9-a4ac-005056bf8718
+  priority: null
+  readOnlyRootFilesystem: false
+  requiredDropCapabilities:
+  - KILL
+  - MKNOD
+  - SETUID
+  - SETGID
+  runAsUser:
+    type: MustRunAsRange
+  seLinuxContext:
+    type: MustRunAs
+  supplementalGroups:
+    type: RunAsAny
+  users: []
+  volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - hostPath
+  - persistentVolumeClaim
+  - projected
+  - secret
+- allowHostDirVolumePlugin: true
+  allowHostIPC: false
+  allowHostNetwork: false
+  allowHostPID: false
+  allowHostPorts: false
+  allowPrivilegedContainer: false
+  allowedCapabilities: null
+  apiVersion: security.openshift.io/v1
+  defaultAddCapabilities: null
+  fsGroup:
+    type: RunAsAny
+  groups: []
+  kind: SecurityContextConstraints
+  metadata:
+    annotations:
+      kubernetes.io/description: 'hostmount-anyuid provides all the features of the
+        restricted SCC but allows host mounts and any UID by a pod.  This is primarily
+        used by the persistent volume recycler. WARNING: this SCC allows host file
+        system access as any UID, including UID 0.  Grant with caution.'
+    creationTimestamp: 2019-03-18T00:57:23Z
+    name: hostmount-anyuid
+    namespace: ""
+    resourceVersion: "2170"
+    selfLink: /apis/security.openshift.io/v1/securitycontextconstraints/hostmount-anyuid
+    uid: ca4e6a9e-4918-11e9-a4ac-005056bf8718
+  priority: null
+  readOnlyRootFilesystem: false
+  requiredDropCapabilities:
+  - MKNOD
+  runAsUser:
+    type: RunAsAny
+  seLinuxContext:
+    type: MustRunAs
+  supplementalGroups:
+    type: RunAsAny
+  users:
+  - system:serviceaccount:openshift-infra:pv-recycler-controller
+  - system:serviceaccount:kube-service-catalog:service-catalog-apiserver
+  volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - hostPath
+  - nfs
+  - persistentVolumeClaim
+  - projected
+  - secret
+- allowHostDirVolumePlugin: false
+  allowHostIPC: false
+  allowHostNetwork: true
+  allowHostPID: false
+  allowHostPorts: true
+  allowPrivilegedContainer: false
+  allowedCapabilities: null
+  apiVersion: security.openshift.io/v1
+  defaultAddCapabilities: null
+  fsGroup:
+    type: MustRunAs
+  groups: []
+  kind: SecurityContextConstraints
+  metadata:
+    annotations:
+      kubernetes.io/description: hostnetwork allows using host networking and host
+        ports but still requires pods to be run with a UID and SELinux context that
+        are allocated to the namespace.
+    creationTimestamp: 2019-03-18T00:57:24Z
+    name: hostnetwork
+    namespace: ""
+    resourceVersion: "1657"
+    selfLink: /apis/security.openshift.io/v1/securitycontextconstraints/hostnetwork
+    uid: cabc38f4-4918-11e9-a4ac-005056bf8718
+  priority: null
+  readOnlyRootFilesystem: false
+  requiredDropCapabilities:
+  - KILL
+  - MKNOD
+  - SETUID
+  - SETGID
+  runAsUser:
+    type: MustRunAsRange
+  seLinuxContext:
+    type: MustRunAs
+  supplementalGroups:
+    type: MustRunAs
+  users:
+  - system:serviceaccount:default:router
+  - system:serviceaccount:default:registry
+  volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - persistentVolumeClaim
+  - projected
+  - secret
+- allowHostDirVolumePlugin: false
+  allowHostIPC: false
+  allowHostNetwork: false
+  allowHostPID: false
+  allowHostPorts: false
+  allowPrivilegedContainer: false
+  allowedCapabilities: null
+  apiVersion: security.openshift.io/v1
+  defaultAddCapabilities: null
+  fsGroup:
+    type: RunAsAny
+  groups: []
+  kind: SecurityContextConstraints
+  metadata:
+    annotations:
+      kubernetes.io/description: nonroot provides all features of the restricted SCC
+        but allows users to run with any non-root UID.  The user must specify the
+        UID or it must be specified on the by the manifest of the container runtime.
+    creationTimestamp: 2019-03-18T00:57:21Z
+    name: nonroot
+    namespace: ""
+    resourceVersion: "6"
+    selfLink: /apis/security.openshift.io/v1/securitycontextconstraints/nonroot
+    uid: c973f096-4918-11e9-a4ac-005056bf8718
+  priority: null
+  readOnlyRootFilesystem: false
+  requiredDropCapabilities:
+  - KILL
+  - MKNOD
+  - SETUID
+  - SETGID
+  runAsUser:
+    type: MustRunAsNonRoot
+  seLinuxContext:
+    type: MustRunAs
+  supplementalGroups:
+    type: RunAsAny
+  users: []
+  volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - persistentVolumeClaim
+  - projected
+  - secret
+- allowHostDirVolumePlugin: true
+  allowHostIPC: true
+  allowHostNetwork: true
+  allowHostPID: true
+  allowHostPorts: true
+  allowPrivilegedContainer: true
+  allowedCapabilities:
+  - '*'
+  apiVersion: security.openshift.io/v1
+  defaultAddCapabilities: null
+  fsGroup:
+    type: RunAsAny
+  groups:
+  - system:cluster-admins
+  - system:nodes
+  - system:masters
+  kind: SecurityContextConstraints
+  metadata:
+    annotations:
+      kubernetes.io/description: 'privileged allows access to all privileged and host
+        features and the ability to run as any user, any group, any fsGroup, and with
+        any SELinux context.  WARNING: this is the most relaxed SCC and should be
+        used only for cluster administration. Grant with caution.'
+    creationTimestamp: 2019-03-18T00:57:21Z
+    name: privileged
+    namespace: ""
+    resourceVersion: "102155"
+    selfLink: /apis/security.openshift.io/v1/securitycontextconstraints/privileged
+    uid: c91abe52-4918-11e9-a4ac-005056bf8718
+  priority: null
+  readOnlyRootFilesystem: false
+  requiredDropCapabilities: null
+  runAsUser:
+    type: RunAsAny
+  seLinuxContext:
+    type: RunAsAny
+  seccompProfiles:
+  - '*'
+  supplementalGroups:
+    type: RunAsAny
+  users:
+  - system:admin
+  - system:serviceaccount:openshift-infra:build-controller
+  - system:serviceaccount:openshift-node:sync
+  - system:serviceaccount:openshift-sdn:sdn
+  - system:serviceaccount:management-infra:management-admin
+  - system:serviceaccount:management-infra:inspector-admin
+  - system:serviceaccount:vault-deploy:ocadmin
+  - system:serviceaccount:vault-deploy:privilegeduser
+  volumes:
+  - '*'
+- allowHostDirVolumePlugin: false
+  allowHostIPC: false
+  allowHostNetwork: false
+  allowHostPID: false
+  allowHostPorts: false
+  allowPrivilegedContainer: false
+  allowedCapabilities: null
+  apiVersion: security.openshift.io/v1
+  defaultAddCapabilities: null
+  fsGroup:
+    type: MustRunAs
+  groups:
+  - system:authenticated
+  kind: SecurityContextConstraints
+  metadata:
+    annotations:
+      kubernetes.io/description: restricted denies access to all host features and
+        requires pods to be run with a UID, and SELinux context that are allocated
+        to the namespace.  This is the most restrictive SCC and it is used by default
+        for authenticated users.
+    creationTimestamp: 2019-03-18T00:57:23Z
+    name: restricted
+    namespace: ""
+    resourceVersion: "34"
+    selfLink: /apis/security.openshift.io/v1/securitycontextconstraints/restricted
+    uid: ca8c1e6e-4918-11e9-a4ac-005056bf8718
+  priority: null
+  readOnlyRootFilesystem: false
+  requiredDropCapabilities:
+  - KILL
+  - MKNOD
+  - SETUID
+  - SETGID
+  runAsUser:
+    type: MustRunAsRange
+  seLinuxContext:
+    type: MustRunAs
+  supplementalGroups:
+    type: RunAsAny
+  users: []
+  volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - persistentVolumeClaim
+  - projected
+  - secret
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

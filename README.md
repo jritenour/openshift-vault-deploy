@@ -8,11 +8,12 @@ Clone this repo, then:
 5. oc create -f rolebindings.yaml
 6. oc create -f endpoints.yaml
 7. oc create -f configmap.yaml
-8. oc create -f statefulsets.yaml
-9. oc create -f routes.yaml (or ingress - see ingressexample.yaml)
-10. export VAULT_ADDR=(vault route name)
-11. Install vault locally
-12. vault init
-13. vault operator init -key-shares=1 -key-threshold=1
-14. Set the unseal key as an env variable called VAULT_UNSEAL
-15. vault unseal $UNSEAL_KEY
+8. oc adm policy add-scc-to-user privileged -n vault-deploy -z privilegeduser
+9. oc create -f statefulsets.yaml
+10. oc create -f routes.yaml (or ingress - see ingressexample.yaml)
+11. export VAULT_ADDR=(vault route name)
+12. Install vault locally
+13. vault init
+14. vault operator init -key-shares=1 -key-threshold=1
+15. Set the unseal key as an env variable called VAULT_UNSEAL
+16. vault unseal $VAULT_UNSEAL
