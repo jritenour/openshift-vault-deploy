@@ -1,6 +1,7 @@
 # Getting started
 
-1. Clone this repo
+Clone this repo, then:
+1. oc new-project vault-deploy
 2. Edit route names in route.yaml to match your environment
 3. oc create -f services.yaml
 4. oc create -f serviceaccounts.yaml
