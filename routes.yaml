@@ -19,15 +19,6 @@ items:
       name: consul
       weight: 100
     wildcardPolicy: None
-  status:
-    ingress:
-    - conditions:
-      - lastTransitionTime: 2019-03-19T14:01:57Z
-        status: "True"
-        type: Admitted
-      host: consul-vault-deploy.apps.home.lab
-      routerName: router
-      wildcardPolicy: None
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
@@ -47,15 +38,6 @@ items:
       name: vault
       weight: 100
     wildcardPolicy: None
-  status:
-    ingress:
-    - conditions:
-      - lastTransitionTime: 2019-03-19T14:08:38Z
-        status: "True"
-        type: Admitted
-      host: vault-vault-deploy.apps.home.lab
-      routerName: router
-      wildcardPolicy: None
 kind: List
 metadata:
   resourceVersion: ""

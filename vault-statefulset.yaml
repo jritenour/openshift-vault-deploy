@@ -17,7 +17,6 @@
     serviceName: vault
     template:
       metadata:
-        creationTimestamp: null
         labels:
           app: vault
       spec:
@@ -53,7 +52,7 @@
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: vault-enterprise
+          image: docker.io/vault
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -98,7 +97,7 @@
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: docker.io/hashicorp/consul-enterprise
+          image: consul
           imagePullPolicy: IfNotPresent
           name: consul-vault-agent
           resources: {}
@@ -133,17 +132,6 @@
         resources:
           requests:
             storage: 1Gi
-      status:
-        phase: Pending
-  status:
-    collisionCount: 0
-    currentReplicas: 1
-    currentRevision: vault-864dc79697
-    observedGeneration: 1
-    readyReplicas: 1
-    replicas: 1
-    updateRevision: vault-864dc79697
-    updatedReplicas: 1
 kind: List
 metadata:
   resourceVersion: ""

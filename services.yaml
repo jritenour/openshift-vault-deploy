@@ -59,7 +59,6 @@ items:
       app: vault
     name: vault
     namespace: vault-deploy
-    resourceVersion: "1743872"
     selfLink: /api/v1/namespaces/vault-deploy/services/vault
   spec:
     ports:
@@ -75,5 +74,4 @@ items:
     loadBalancer: {}
 kind: List
 metadata:
-  resourceVersion: ""
   selfLink: ""

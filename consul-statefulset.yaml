@@ -55,7 +55,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: docker.io/hashicorp/consul-enterprise
+          image: docker.io/consul
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -121,14 +121,3 @@ items:
         resources:
           requests:
             storage: 1Gi
-      status:
-        phase: Pending
-  status:
-    collisionCount: 0
-    currentReplicas: 1
-    currentRevision: consul-c68458d8c
-    observedGeneration: 1
-    readyReplicas: 1
-    replicas: 1
-    updateRevision: consul-c68458d8c
-    updatedReplicas: 1
