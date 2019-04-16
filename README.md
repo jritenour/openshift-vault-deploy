@@ -1,4 +1,17 @@
-# Getting started
+# Deploy HashiCorp Vault (and Consul) on OpenShift
+
+This will deploy Vault & Consul on OpenShift (tested on 3.10 & 3.11).  Vault will use Consul as a storage backend, and Consul will manage the Vault Cluster.
+
+As configured, this will deploy the open source images of each from Docker hub, but you can supply your own enterprise image by either building & pushing to OpenShift's registry (outlined in steps 2-6), or by using another registry OpenShift is configured to pull from. 
+
+Note, this is configured to deploy single replicas of each.  If you plan to deploy more pods, then update the "replicas" count in the statefulset files, and addition retry-join statements under the startup args for the containers in the stateful set.  For ingressexample
+
+######           - -retry-join=consul-0.consul.$(NAMESPACE).svc.cluster.local
+######           - -retry-join=consul-1.consul.$(NAMESPACE).svc.cluster.local
+
+######           - -retry-join=consul-2.consul.$(NAMESPACE).svc.cluster.local
+
+To get started,
 
 Clone this repo, then:
 1. oc new-project vault-deploy
