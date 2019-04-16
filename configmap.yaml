@@ -23,7 +23,6 @@ items:
   metadata:
     name: vault
     namespace: vault-deploy
-    selfLink: /api/v1/namespaces/vault-deploy/configmaps/vault
 kind: List
 metadata:
   resourceVersion: ""

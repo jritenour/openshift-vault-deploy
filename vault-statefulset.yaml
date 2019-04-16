@@ -1,7 +1,6 @@
-- apiVersion: apps/v1
+  apiVersion: apps/v1
   kind: StatefulSet
   metadata:
-    generation: 1
     labels:
       app: vault
     name: vault
@@ -52,7 +51,7 @@
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: docker.io/vault
+          image: "vault:latest"
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -97,7 +96,7 @@
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: consul
+          image: "consul"
           imagePullPolicy: IfNotPresent
           name: consul-vault-agent
           resources: {}
@@ -132,7 +131,3 @@
         resources:
           requests:
             storage: 1Gi
-kind: List
-metadata:
-  resourceVersion: ""
-  selfLink: ""

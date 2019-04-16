@@ -1,6 +1,4 @@
-apiVersion: v1
-items:
-- apiVersion: apps/v1
+  apiVersion: apps/v1
   kind: StatefulSet
   metadata:
     generation: 1
@@ -55,7 +53,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: docker.io/consul
+          image: "consul:latest"
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:

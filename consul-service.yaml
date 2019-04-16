@@ -1,13 +1,10 @@
-apiVersion: v1
-items:
-- apiVersion: v1
+  apiVersion: v1
   kind: Service
   metadata:
     labels:
       app: consul
     name: consul
     namespace: vault-deploy
-    selfLink: /api/v1/namespaces/vault-deploy/services/consul
   spec:
     ports:
     - name: http
@@ -52,26 +49,3 @@ items:
     type: ClusterIP
   status:
     loadBalancer: {}
-- apiVersion: v1
-  kind: Service
-  metadata:
-    labels:
-      app: vault
-    name: vault
-    namespace: vault-deploy
-    selfLink: /api/v1/namespaces/vault-deploy/services/vault
-  spec:
-    ports:
-    - name: vault
-      port: 8200
-      protocol: TCP
-      targetPort: 8200
-    selector:
-      app: vault
-    sessionAffinity: None
-    type: ClusterIP
-  status:
-    loadBalancer: {}
-kind: List
-metadata:
-  selfLink: ""
