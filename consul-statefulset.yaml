@@ -3,7 +3,7 @@
   metadata:
     generation: 1
     name: consul
-    namespace: vault-deploy
+    namespace: vault
     selfLink: /apis/apps/v1/namespaces/vault-deploy/statefulsets/consul
   spec:
     podManagementPolicy: OrderedReady

@@ -4,7 +4,7 @@
     labels:
       app: vault
     name: vault
-    namespace: vault-deploy
+    namespace: vault
   spec:
     ports:
     - name: vault

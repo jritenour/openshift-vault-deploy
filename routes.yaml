@@ -8,10 +8,10 @@ items:
     labels:
       app: consul
     name: consul
-    namespace: vault-deploy
+    namespace: vault
     selfLink: /apis/route.openshift.io/v1/namespaces/vault-deploy/routes/consul
   spec:
-    host: consul-vault-deploy.apps.home.lab
+    host: consul.apps.jrlab.home.lab
     port:
       targetPort: 8500
     to:
@@ -27,10 +27,10 @@ items:
     labels:
       app: vault
     name: vault
-    namespace: vault-deploy
+    namespace: vault
     selfLink: /apis/route.openshift.io/v1/namespaces/vault-deploy/routes/vault
   spec:
-    host: vault-vault-deploy.apps.home.lab
+    host: vault.apps.jrlab.home.lab
     port:
       targetPort: 8200
     to:

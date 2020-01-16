@@ -4,7 +4,7 @@
     labels:
       app: vault
     name: vault
-    namespace: vault-deploy
+    namespace: vault
     selfLink: /apis/apps/v1/namespaces/vault-deploy/statefulsets/vault
   spec:
     podManagementPolicy: OrderedReady
